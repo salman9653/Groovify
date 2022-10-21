@@ -8,7 +8,7 @@ import { useGetSongDetailsQuery, useGetSongRelatedQuery } from '../redux/service
 
 const SongDetails = () => {
     const dispatch = useDispatch();
-    const { songid } = useParams();
+    const { songid, id: artistId } = useParams();
     const { activeSong, isPlaying } = useSelector((state) => state.player);
     const { data: songData, isFeatching: isFeatchingSongDetails } = useGetSongDetailsQuery({ songid })
     const { data, isFeatching: isFeatchingRelatedSongs, error } = useGetSongRelatedQuery({ songid })
@@ -28,8 +28,8 @@ const SongDetails = () => {
     return (
         <div className="flex flex-col">
             <DetailsHeader
-                // artistId={artistId}
-                artistId=""
+                artistId={artistId}
+                // artistId=""
                 songData={songData}
             />
             <div className='mb-10'>
